@@ -17,7 +17,7 @@ public class StreamingWCApp {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        DataStreamSource<String> source = env.socketTextStream("localhostt", 9927);
+        DataStreamSource<String> source = env.socketTextStream("localhost", 9927);
 
         source.flatMap(new FlatMapFunction<String, String>() {
             @Override
@@ -47,4 +47,5 @@ public class StreamingWCApp {
         .print();
         env.execute("StreamingWCApp");
     }
+
 }

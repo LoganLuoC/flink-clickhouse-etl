@@ -9,7 +9,7 @@ public class Access {
     public String channel;
     public String uid;
     public int nu;  // 1新
-    public int nu2;
+    public int nu2;   // bloom use
     public String ip;  // ==> ip去解析
     public long time;
     public String version;
