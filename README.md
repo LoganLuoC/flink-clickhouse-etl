@@ -2,6 +2,8 @@
 
 real-time Flink process data into ClickHouse
 
+![arch](./asserts/WechatIMG265.png)
+
 ## Function
 
 - [x] Flink从Kafka解析数据
