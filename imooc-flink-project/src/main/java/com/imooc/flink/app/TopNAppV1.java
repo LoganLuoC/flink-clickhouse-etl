@@ -21,7 +21,7 @@ import java.util.List;
 
 
 /**
- * 按照操作系统维度进行新老用户分析
+ * 基于时间窗口的不同event类型，类别，商品TopN的访问量
  */
 public class TopNAppV1 {
     public static void main(String[] args) throws Exception {

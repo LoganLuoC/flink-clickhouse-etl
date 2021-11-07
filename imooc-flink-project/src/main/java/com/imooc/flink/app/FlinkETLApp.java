@@ -79,6 +79,7 @@ public class FlinkETLApp {
                     pstmt.setLong(18, System.currentTimeMillis());
 
                 },
+                // 数据Sink的批次和周期在这里定义，否则会有一个较大的默认值
                 JdbcExecutionOptions.builder().withBatchSize(50).withBatchIntervalMs(1000).build(),
                 new JdbcConnectionOptions.JdbcConnectionOptionsBuilder()
                         .withUrl("jdbc:clickhouse://localhost:8123/dd")
