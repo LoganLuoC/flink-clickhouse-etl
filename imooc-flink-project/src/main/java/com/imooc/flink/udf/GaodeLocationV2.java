@@ -1,8 +1,12 @@
-package com.imooc.flink.app;
+package com.imooc.flink.udf;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.imooc.flink.domian.Access;
+import com.imooc.flink.domian.AccessV2;
 import com.imooc.flink.utils.StringUtils;
+import org.apache.flink.api.common.functions.RichMapFunction;
+import org.apache.flink.configuration.Configuration;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -12,18 +16,29 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
-public class GaodeApp {
-    public static void main(String[] args) {
-        String ip = "221.206.131.10";
+public class GaodeLocationV2 extends RichMapFunction<AccessV2, AccessV2> {
+
+    CloseableHttpClient httpClient = null;
+
+    @Override
+    public void open(Configuration parameters) throws Exception {
+        httpClient = HttpClients.createDefault();
+    }
+
+    @Override
+    public void close() throws Exception {
+        if (httpClient != null) httpClient.close();
+    }
+
+    @Override
+    public AccessV2 map(AccessV2 value) throws Exception {
+        String  ip = value.ip;
+        String url = "https://restapi.amap.com/v5/ip?ip=" + ip + "&type=4&key=" + StringUtils.GAODE_KEY;
 
         String province = "";
         String city = "";
 
         CloseableHttpResponse response = null;
-
-        String url = "https://restapi.amap.com/v5/ip?ip=" + ip + "&type=4&key=" + StringUtils.GAODE_KEY;
-
-        CloseableHttpClient httpClient = HttpClients.createDefault();
 
         try {
             HttpGet httpGet = new HttpGet(url);
@@ -38,9 +53,6 @@ public class GaodeApp {
                 province = jsonObject.getString("province");
                 city = jsonObject.getString("city");
 
-                System.out.println(result);
-                System.out.println(province);
-                System.out.println(city);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,10 +60,13 @@ public class GaodeApp {
             if (null != response) {
                 try {
                     response.close();
+                    value.province = province;
+                    value.city = city;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+        return value;
     }
 }

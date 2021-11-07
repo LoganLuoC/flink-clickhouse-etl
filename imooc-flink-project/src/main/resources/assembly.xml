@@ -1,0 +1,11 @@
+<assembly>
+    <id>dependencies</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>jar</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+</assembly>

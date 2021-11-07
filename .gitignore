@@ -1,3 +1,7 @@
-imooc-flink-project/target/
+# Common useless file
 *.class
+
+# Useless dir
+target
 /target
+/state

@@ -2,9 +2,14 @@ package com.imooc.flink.monitor;
 
 import org.apache.flink.api.common.functions.RichFlatMapFunction;
 import org.apache.flink.api.common.state.ListState;
+import org.apache.flink.api.common.state.ListStateDescriptor;
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.shaded.guava18.com.google.common.collect.Lists;
 import org.apache.flink.util.Collector;
-import scala.Tuple2;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ThresholdWarning extends
