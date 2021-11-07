@@ -1,0 +1,7 @@
+# Common useless file
+*.class
+
+# Useless dir
+target
+/target
+/state

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="imooc-flink-project" />
+        <module name="imooc-flink-datastream" />
+        <module name="imooc-clickhouse" />
+        <module name="imooc-flink-basic" />
+        <module name="imooc-flink-sql" />
+        <module name="imooc-flink-dataset" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
