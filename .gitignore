@@ -1,1 +1,3 @@
 imooc-flink-project/target/
+*.class
+/target
